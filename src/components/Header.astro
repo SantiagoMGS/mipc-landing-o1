@@ -64,7 +64,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       href={waLink()}
       target="_blank"
       rel="noopener noreferrer"
-      class="hidden rounded-[5px] bg-brand-500 px-6 py-3 font-display text-[17px] font-bold text-white transition hover:bg-brand-600 lg:inline-block"
+      class="hidden rounded-[5px] bg-brand-600 px-6 py-3 font-display text-[17px] font-bold text-white transition hover:bg-brand-700 lg:inline-block"
     >
       Cotizar
     </a>
@@ -96,10 +96,10 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         </li>
       ))}
       <li class="flex gap-3 py-4">
-        <a href={`tel:${CONTACT.phoneIntl}`} class="flex-1 rounded-[5px] border-2 border-brand-500 px-4 py-3 text-center font-display font-bold text-brand-600">
+        <a href={`tel:${CONTACT.phoneIntl}`} class="flex-1 rounded-[5px] border-2 border-brand-500 px-4 py-3 text-center font-display font-bold text-brand-700">
           Llamar
         </a>
-        <a href={waLink()} target="_blank" rel="noopener noreferrer" class="flex-1 rounded-[5px] bg-brand-500 px-4 py-3 text-center font-display font-bold text-white">
+        <a href={waLink()} target="_blank" rel="noopener noreferrer" class="flex-1 rounded-[5px] bg-brand-600 px-4 py-3 text-center font-display font-bold text-white">
           WhatsApp
         </a>
       </li>

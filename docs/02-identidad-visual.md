@@ -8,110 +8,138 @@
 
 ## 1. Logo
 
-**Archivo:** `src/assets/marca/logo-mipc.png` (374 × 180 px, con transparencia)
+**Fuente de verdad:** `src/assets/marca/vector/logo-kit.pdf` — archivo vectorial original
+(Illustrator, 128 trazos, sin imágenes incrustadas).
+
+### El kit contiene 4 variantes
+
+| # | Variante | Descriptor | Uso sugerido |
+|---|---|---|---|
+| 1 | `logo-reparamos` | "Reparamos tu computador" | Publicidad dirigida a persona natural |
+| 2 | `logo-tecnologia-espaciado` | "T e c n o l o g í a" | **La que usa el sitio** |
+| 3 | `logo-dominio` | "mipc.com.co" | Papelería, firmas de correo |
+| 4 | `logo-tecnologia` | "Tecnología" compacto | Espacios reducidos |
+
+Todas comparten el mismo wordmark y proporción (~2,08:1).
 
 ### Anatomía
 
 ```
 ┌─────────────────────────┐
-│   m i P C      ◜        │   "mi" → minúsculas, gris oscuro con degradado
+│   m i P C      ◜        │   "mi" → minúsculas, gris con degradado
 │   T e c n o l o g í a   │   "PC" → MAYÚSCULAS, naranja con degradado
-└─────────────────────────┘   ◜    → chispa/llama naranja sobre la C
+└─────────────────────────┘   ◜    → hoja naranja inclinada sobre la C
                               "Tecnología" → gris, tracking amplio
 ```
 
-- **Tipo:** logotipo (wordmark) con descriptor
-- **Wordmark:** `miPC` — el contraste entre minúsculas y mayúsculas separa visualmente
-  "**mi**" de "**PC**", reforzando la lectura de la marca
-- **Bicromía:** gris oscuro + naranja, ambos con degradado vertical
-- **Símbolo:** forma de **chispa o llama** inclinada, en naranja, sobre la `C`. Aporta la nota de
-  energía y movimiento del conjunto
-- **Descriptor:** `Tecnología` en gris, letterspacing amplio, alineado al ancho del wordmark
-- **Tipografía:** grotesca redondeada muy pesada, de trazo geométrico
+- **Tipo:** logotipo (wordmark) con descriptor intercambiable
+- **Wordmark:** `miPC` — el contraste minúscula/mayúscula separa visualmente "**mi**" de "**PC**"
+- **Bicromía:** gris + naranja, ambos con degradado vertical
+- **Símbolo:** **hoja** inclinada en naranja sobre la `C`, con forma de pétalo
+- **Tipografía:** grotesca redondeada muy pesada, con cortes diagonales en la `m` y la `i`
 
-> ⚠️ **Corrección respecto a la primera versión de este documento.** El análisis inicial se hizo
-> sobre el logo renderizado a 121 × 58 px en el sitio, y describió el wordmark como `mipc` en
-> minúsculas con un *check* sobre la `c`. Al revisar el archivo original se confirma que es
-> **`miPC`** con `PC` en mayúsculas, y que el símbolo es una **chispa**, no un check.
+> ⚠️ **Dos correcciones respecto a versiones anteriores de este documento.** El análisis inicial,
+> hecho sobre el render de 121 × 58 px del sitio, describía `mipc` en minúsculas con un *check*
+> sobre la `c`. La segunda revisión, sobre el PNG de 374 × 180, corrigió a `miPC` pero llamó
+> "chispa" al símbolo. El vector confirma que es **`miPC`** y que el símbolo es una **hoja**.
 
 ### Estado y acciones
 
 | Aspecto | Estado | Acción |
 |---|---|---|
-| Formato | 🟡 PNG con transparencia, 374 × 180 | Vectorizar a **SVG** |
-| Versión monocromática | 🔴 No existe | Crear versión 1 tinta |
-| Versión para fondo oscuro | 🔴 No existe | El gris no contrasta sobre `#28303D`; hoy se resuelve poniendo el logo sobre placa blanca en el footer |
-| Versión reducida / isotipo | 🔴 No existe | Crear marca reducida para favicon y avatares |
+| Fuente vectorial | ✅ Recuperada y archivada en el repo | — |
+| Formato servido | ✅ PNG de 1200 px generado desde el vector; Astro lo convierte a WebP | — |
+| Isotipo | ✅ Extraído (`isotipo.png`) | — |
+| Favicon | ✅ Bloque "PC" + hoja, generado desde el vector | — |
+| Versión para fondo oscuro | 🔴 No existe | El gris no contrasta sobre `#28303D`; hoy va sobre placa blanca en el footer |
 | Zona de protección | 🔴 No definida | Definir (sugerido: altura de la `m`) |
 | Tamaño mínimo | 🔴 No definido | Definir (sugerido: 100 px de ancho) |
-| Degradado | 🟡 Envejece la marca | Considerar aplanar a color sólido |
-| `loading="lazy"` en el logo (WordPress) | ✅ Corregido | Ahora `eager` + `fetchpriority=high` |
 
-> **Un JPEG del logo no sirve.** Se descartó un `LogoMipc.jpeg` de la misma resolución
-> (374 × 180) porque el formato aplana la transparencia sobre `#F7F7F7` e introduce artefactos de
-> compresión en los bordes del texto. Para logotipos: SVG > PNG > todo lo demás.
+> **Por qué el sitio no sirve SVG.** El vector convertido pesa ~96 KB incluso tras optimizar,
+> porque los degradados se traducen en decenas de `clipPath` y `linearGradient`. A los 150 px a los
+> que se muestra el logo, el WebP generado desde el vector pesa ~5 KB y se ve igual. El vector se
+> conserva como fuente para impresión y futuras piezas, no como formato de entrega web.
+
+> **Un JPEG del logo no sirve.** Se descartó un `LogoMipc.jpeg` de 374 × 180 porque el formato
+> aplana la transparencia sobre `#F7F7F7` e introduce artefactos en los bordes del texto.
+> Para logotipos: vector > PNG > todo lo demás.
 
 ### Favicon
 
-**Actual:** `cropped-profile2-32x32.jpg` — 🔴 un **JPG** recortado, no el logo.
+**Anterior (WordPress):** `cropped-profile2-32x32.jpg` — un JPG recortado que ni siquiera era el logo.
 
-Un favicon en JPG no soporta transparencia y se ve con artefactos de compresión a 32 px. **Reemplazar por un SVG + PNG generados desde la marca reducida.**
+**Actual:** el bloque **"PC" + hoja** aislado del isotipo, generado desde el vector en 32, 192 y
+512 px, más `apple-touch-icon` de 180 px con fondo blanco. Se usó solo el bloque naranja porque el
+wordmark completo (proporción 2,6:1) resulta ilegible a 32 px.
 
 ---
 
 ## 2. Paleta de color
 
+> **Fuente autoritativa:** los valores salen de los `stop-color` declarados dentro del archivo
+> vectorial de marca (`src/assets/marca/vector/logo-kit.pdf`), no de un muestreo rasterizado.
+
 ### 2.1 Colores de marca
 
-| Rol | HEX | RGB | Uso observado |
-|---|---|---|---|
-| **Primario — Rojo MiPC** | `#EB3A00` | `235, 58, 0` | Logo, fondos de CTA, ondas decorativas, acentos |
-| **Primario oscuro** | `#D64700` | `214, 71, 0` | Variante de texto/enlace, estados hover |
-| **Neutro oscuro — Grafito** | `#28303D` | `40, 48, 61` | Títulos, texto de alto contraste |
-| **Texto base** | `#54595F` | `84, 89, 95` | Párrafos (uso más frecuente del sitio) |
-| **Fondo cálido** | `#FEF2EA` | `254, 242, 234` | Fondos de sección alternos |
-| **Blanco** | `#FFFFFF` | `255, 255, 255` | Fondo principal |
+| Rol | HEX | Origen |
+|---|---|---|
+| **Naranja MiPC** | `#FF461A` | Degradado del logotipo (extremo claro) |
+| **Naranja MiPC — extremo oscuro** | `#FF4019` | Degradado del logotipo |
+| **Gris MiPC** | `#505358` | Sólido del descriptor "Tecnología" |
+| **Gris MiPC — extremo oscuro** | `#484A50` | Degradado del wordmark |
+| **Fondo cálido** | `#FEF2EA` | Heredado del sitio |
+| **Blanco** | `#FFFFFF` | Fondo principal |
 
 ### 2.2 Muestras
 
-| | Color | HEX |
-|---|---|---|
-| 🟥 | Rojo MiPC | `#EB3A00` |
-| 🟧 | Rojo oscuro | `#D64700` |
-| ⬛ | Grafito | `#28303D` |
-| ⬜ | Fondo cálido | `#FEF2EA` |
-
-### 2.3 ⚠️ El logotipo y el sitio no usan exactamente el mismo color
-
-Muestreo de los píxeles del archivo original del logo (`logo-mipc.png`), ordenado por frecuencia:
-
-| Color en el logo | HEX | Píxeles |
-|---|---|---|
-| Naranja dominante | `#E54D00` | 3.672 |
-| Naranja (rango del degradado) | `#E43B02` → `#E54D00` | ~7.500 |
-| Gris dominante | `#535153` | 4.806 |
-| Gris (extremo oscuro del degradado) | `#423E3F` | 877 |
-
-Contrastado con lo que define el CSS del sitio:
-
-| Rol | Logotipo | Sitio | ¿Coinciden? |
+| | Color | HEX | Contraste sobre blanco |
 |---|---|---|---|
-| Naranja | `#E54D00` | `#EB3A00` | ❌ El del sitio es más rojo y saturado |
-| Gris oscuro | `#535153` (neutro) | `#28303D` (azulado) | ❌ Matices distintos |
+| 🟧 | Naranja de marca | `#FF461A` | 3,42:1 |
+| 🟥 | Naranja accesible (botones) | `#D63F0F` | 4,59:1 |
+| 🟫 | Naranja para texto | `#B33200` | 6,23:1 |
+| ⬛ | Grafito | `#28303D` | 13,29:1 |
 
-**Ninguna de las dos está "mal"**: son decisiones tomadas en momentos distintos que fueron
-divergiendo. La diferencia es sutil y nadie la nota de forma aislada, pero se vuelve visible
-cuando el logo queda junto a un botón naranja.
+### 2.3 Historia del color: tres versiones distintas
 
-**Recomendación:** al vectorizar el logo, decidir explícitamente cuál manda. Lo habitual es que
-mande el logotipo, por ser el activo de marca. Ambos naranjas tienen un contraste sobre blanco
-prácticamente idéntico (~3,9:1), así que la decisión no tiene consecuencias de accesibilidad.
+Durante la migración aparecieron **tres valores distintos para el mismo naranja**, según dónde se
+mirara:
 
-**Decisión provisional:** se conserva `#EB3A00` como color de interfaz —es el que el sitio ha
-usado durante años y el que reconoce el usuario recurrente— hasta que se resuelva la
-vectorización.
+| Fuente | Naranja | Gris | Fiabilidad |
+|---|---|---|---|
+| **Vector de marca** (`logo-kit.pdf`) | `#FF461A` | `#505358` | ✅ Autoritativa |
+| PNG del sitio WordPress | `#E54D00` | `#535153` | 🟡 Export degradado |
+| CSS del sitio WordPress | `#EB3A00` | `#28303D` | 🟡 Elegido a ojo |
 
-### 2.4 🔴 Problema detectado: proliferación de grises
+El PNG que servía WordPress era un export apagado del original, y el CSS del sitio se configuró
+con un naranja aún más rojo. Ninguno coincidía con el archivo de marca.
+
+**Decisión tomada:** manda el vector. `brand-500` pasa a ser `#FF461A`.
+
+### 2.4 ⚠️ El color de marca no sirve como fondo de botón
+
+Al adoptar el naranja real apareció un problema medible:
+
+| Fondo | Texto blanco a 17 px | ¿Cumple AA (4,5:1)? |
+|---|---|---|
+| `#FF461A` (marca) | 3,42:1 | ❌ |
+| `#EB3A00` (sitio anterior) | 4,09:1 | ❌ |
+| `#D63F0F` | 4,59:1 | ✅ |
+
+> **Los botones del sitio anterior tampoco cumplían.** No es un problema que introdujera el cambio
+> de color: ya existía y pasó desapercibido porque nadie lo había medido.
+
+**Solución aplicada** — separar el color de marca del color de acción:
+
+| Token | HEX | Uso |
+|---|---|---|
+| `brand-500` | `#FF461A` | Logotipo, ondas, iconos, bordes, elementos decorativos |
+| `brand-600` | `#D63F0F` | **Fondo de botones** con texto blanco |
+| `brand-700` | `#B33200` | Texto y enlaces en línea sobre fondo claro |
+
+La identidad se mantiene: el naranja que el usuario asocia a la marca sigue presente en el logo y
+en los elementos gráficos. Solo los fondos que llevan texto encima usan la variante oscurecida.
+
+### 2.5 🔴 Problema detectado: proliferación de grises
 
 El sitio usa **siete grises distintos, prácticamente indistinguibles entre sí**:
 
@@ -262,9 +290,9 @@ Conservando radio `5px` y padding `20px 40px`:
 :root {
   /* Marca */
   --brand-50:  #FEF2EA;
-  --brand-500: #EB3A00;
-  --brand-600: #D64700;
-  --brand-700: #B33200;
+  --brand-500: #FF461A;  /* color del logotipo */
+  --brand-600: #D63F0F;  /* fondo de boton, cumple AA con texto blanco */
+  --brand-700: #B33200;  /* texto y enlaces */
 
   /* Neutros */
   --ink-900: #28303D;
@@ -276,7 +304,7 @@ Conservando radio `5px` y padding `20px 40px`:
   /* Externo */
   --whatsapp: #25D366;
 
-  /* Tipografía */
+  /* Tipografia */
   --font-display: "Baloo Chettan 2", system-ui, sans-serif;
   --font-body: "Raleway", system-ui, sans-serif;
 
@@ -294,8 +322,8 @@ Conservando radio `5px` y padding `20px 40px`:
 
 @theme {
   --color-brand-50:  #FEF2EA;
-  --color-brand-500: #EB3A00;
-  --color-brand-600: #D64700;
+  --color-brand-500: #FF461A;
+  --color-brand-600: #D63F0F;
   --color-brand-700: #B33200;
 
   --color-ink-900: #28303D;

@@ -10,14 +10,15 @@
 
 /* =============================================================
    Tokens de diseño — ver docs/02-identidad-visual.md
-   Los 4 colores de marca se conservan sin alteración respecto
-   al sitio WordPress original.
+   Los naranjas y grises salen del archivo vectorial de marca.
+   brand-500 es el color del logotipo; brand-600 es la variante
+   accesible para fondos con texto blanco (4.59:1).
    ============================================================= */
 @theme {
   --color-brand-50: #fef2ea;
-  --color-brand-100: #fde0cf;
-  --color-brand-500: #eb3a00;
-  --color-brand-600: #d64700;
+  --color-brand-100: #ffd9cd;
+  --color-brand-500: #ff461a;
+  --color-brand-600: #d63f0f;
   --color-brand-700: #b33200;
 
   --color-ink-900: #28303d;

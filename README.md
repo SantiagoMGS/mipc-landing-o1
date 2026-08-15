@@ -121,8 +121,9 @@ Los archivos `public/_redirects` y `public/_headers` se aplican automáticamente
 
 ## Pendientes antes de salir a producción
 
-- [x] ~~Logo real en el sitio~~ — PNG con transparencia en `src/assets/marca/`
-- [ ] Vectorizar el logo a SVG (hoy es raster de 374×180)
+- [x] ~~Logo real en el sitio~~ — generado desde el vector original
+- [x] ~~Vectorizar el logo~~ — kit vectorial en `src/assets/marca/vector/`
+- [x] ~~Favicon propio~~ — bloque "PC" del isotipo, 32/192/512 px
 - [ ] Definir versión del logo para fondo oscuro (en el footer va sobre placa blanca)
 - [x] ~~Migrar las ilustraciones de servicio a WebP~~ — en `src/assets/`, optimizadas por Astro
 - [x] ~~Añadir los logos reales de clientes~~ — 10 logos identificados en `src/assets/clientes/`

@@ -12,9 +12,11 @@ const base =
   'inline-flex items-center justify-center gap-2 rounded-[5px] px-8 py-4 font-display text-[17px] font-bold transition focus-visible:outline-3';
 
 const variants = {
-  primary: 'bg-brand-500 text-white hover:bg-brand-600',
+  // Fondo brand-600 y no brand-500: con texto blanco a 17px el color del
+  // logotipo se queda en 3.42:1 y no alcanza el minimo AA de 4.5:1.
+  primary: 'bg-brand-600 text-white hover:bg-brand-700',
   // El original tenía el borde en rgba(...,0): invisible. Aquí sí se ve.
-  secondary: 'border-2 border-brand-500 text-brand-600 hover:bg-brand-50',
+  secondary: 'border-2 border-brand-500 text-brand-700 hover:bg-brand-50',
   ghost: 'border-2 border-ink-300 text-ink-700 hover:border-ink-500 hover:text-ink-900',
   whatsapp: 'bg-whatsapp text-white hover:brightness-95',
 } as const;
