@@ -8,36 +8,48 @@
 
 ## 1. Logo
 
-**Archivo actual:** `wp-content/uploads/2023/02/Logo_MiPc_Computadores.png` (374 × 180 px)
+**Archivo:** `src/assets/marca/logo-mipc.png` (374 × 180 px, con transparencia)
 
 ### Anatomía
 
 ```
 ┌─────────────────────────┐
-│   m i p c    ✓          │   "mi"  → gris oscuro / grafito
-│   T e c n o l o g í a   │   "pc"  → rojo-naranja de marca
-└─────────────────────────┘   ✓     → swoosh/check sobre la "c"
-                              "Tecnología" → gris, tracking amplio, minúsculas
+│   m i P C      ◜        │   "mi" → minúsculas, gris oscuro con degradado
+│   T e c n o l o g í a   │   "PC" → MAYÚSCULAS, naranja con degradado
+└─────────────────────────┘   ◜    → chispa/llama naranja sobre la C
+                              "Tecnología" → gris, tracking amplio
 ```
 
 - **Tipo:** logotipo (wordmark) con descriptor
-- **Wordmark:** `mipc` en minúsculas, tipografía redondeada y pesada
-- **Bicromía:** `mi` en gris oscuro + `pc` en rojo-naranja → refuerza la lectura "**Mi PC**"
-- **Símbolo:** trazo tipo *check* / swoosh ascendente sobre la `c`, en el rojo de marca. Connota **"resuelto"**, **"aprobado"**
-- **Descriptor:** `Tecnología` en gris claro, letterspacing amplio, alineado al ancho del wordmark
-- **Acabado:** ligero degradado metálico en las letras (estética de ~2009-2015)
+- **Wordmark:** `miPC` — el contraste entre minúsculas y mayúsculas separa visualmente
+  "**mi**" de "**PC**", reforzando la lectura de la marca
+- **Bicromía:** gris oscuro + naranja, ambos con degradado vertical
+- **Símbolo:** forma de **chispa o llama** inclinada, en naranja, sobre la `C`. Aporta la nota de
+  energía y movimiento del conjunto
+- **Descriptor:** `Tecnología` en gris, letterspacing amplio, alineado al ancho del wordmark
+- **Tipografía:** grotesca redondeada muy pesada, de trazo geométrico
+
+> ⚠️ **Corrección respecto a la primera versión de este documento.** El análisis inicial se hizo
+> sobre el logo renderizado a 121 × 58 px en el sitio, y describió el wordmark como `mipc` en
+> minúsculas con un *check* sobre la `c`. Al revisar el archivo original se confirma que es
+> **`miPC`** con `PC` en mayúsculas, y que el símbolo es una **chispa**, no un check.
 
 ### Estado y acciones
 
 | Aspecto | Estado | Acción |
 |---|---|---|
-| Formato | 🔴 PNG rasterizado únicamente | Vectorizar a **SVG** |
-| Versión monocromática | 🔴 No existe | Crear versión 1 tinta (blanco y negro) |
+| Formato | 🟡 PNG con transparencia, 374 × 180 | Vectorizar a **SVG** |
+| Versión monocromática | 🔴 No existe | Crear versión 1 tinta |
+| Versión para fondo oscuro | 🔴 No existe | El gris no contrasta sobre `#28303D`; hoy se resuelve poniendo el logo sobre placa blanca en el footer |
 | Versión reducida / isotipo | 🔴 No existe | Crear marca reducida para favicon y avatares |
 | Zona de protección | 🔴 No definida | Definir (sugerido: altura de la `m`) |
 | Tamaño mínimo | 🔴 No definido | Definir (sugerido: 100 px de ancho) |
-| Degradado metálico | 🟡 Envejece la marca | Considerar aplanar a color sólido |
-| `loading="lazy"` en el logo | 🔴 Bug — penaliza el LCP | Cargar con `eager` / `fetchpriority=high` |
+| Degradado | 🟡 Envejece la marca | Considerar aplanar a color sólido |
+| `loading="lazy"` en el logo (WordPress) | ✅ Corregido | Ahora `eager` + `fetchpriority=high` |
+
+> **Un JPEG del logo no sirve.** Se descartó un `LogoMipc.jpeg` de la misma resolución
+> (374 × 180) porque el formato aplana la transparencia sobre `#F7F7F7` e introduce artefactos de
+> compresión en los bordes del texto. Para logotipos: SVG > PNG > todo lo demás.
 
 ### Favicon
 
@@ -69,7 +81,37 @@ Un favicon en JPG no soporta transparencia y se ve con artefactos de compresión
 | ⬛ | Grafito | `#28303D` |
 | ⬜ | Fondo cálido | `#FEF2EA` |
 
-### 2.3 🔴 Problema detectado: proliferación de grises
+### 2.3 ⚠️ El logotipo y el sitio no usan exactamente el mismo color
+
+Muestreo de los píxeles del archivo original del logo (`logo-mipc.png`), ordenado por frecuencia:
+
+| Color en el logo | HEX | Píxeles |
+|---|---|---|
+| Naranja dominante | `#E54D00` | 3.672 |
+| Naranja (rango del degradado) | `#E43B02` → `#E54D00` | ~7.500 |
+| Gris dominante | `#535153` | 4.806 |
+| Gris (extremo oscuro del degradado) | `#423E3F` | 877 |
+
+Contrastado con lo que define el CSS del sitio:
+
+| Rol | Logotipo | Sitio | ¿Coinciden? |
+|---|---|---|---|
+| Naranja | `#E54D00` | `#EB3A00` | ❌ El del sitio es más rojo y saturado |
+| Gris oscuro | `#535153` (neutro) | `#28303D` (azulado) | ❌ Matices distintos |
+
+**Ninguna de las dos está "mal"**: son decisiones tomadas en momentos distintos que fueron
+divergiendo. La diferencia es sutil y nadie la nota de forma aislada, pero se vuelve visible
+cuando el logo queda junto a un botón naranja.
+
+**Recomendación:** al vectorizar el logo, decidir explícitamente cuál manda. Lo habitual es que
+mande el logotipo, por ser el activo de marca. Ambos naranjas tienen un contraste sobre blanco
+prácticamente idéntico (~3,9:1), así que la decisión no tiene consecuencias de accesibilidad.
+
+**Decisión provisional:** se conserva `#EB3A00` como color de interfaz —es el que el sitio ha
+usado durante años y el que reconoce el usuario recurrente— hasta que se resuelva la
+vectorización.
+
+### 2.4 🔴 Problema detectado: proliferación de grises
 
 El sitio usa **siete grises distintos, prácticamente indistinguibles entre sí**:
 
@@ -87,7 +129,7 @@ Esto es ruido acumulado por edición manual en Elementor, no una decisión de di
 
 **Acción:** colapsar a una escala neutral de 4 pasos.
 
-### 2.4 Paleta racionalizada propuesta
+### 2.5 Paleta racionalizada propuesta
 
 Conserva exactamente los colores de marca y ordena los neutros:
 
@@ -105,7 +147,7 @@ Conserva exactamente los colores de marca y ordena los neutros:
 
 > Los tonos `brand-700`, `ink-500` y `ink-300` son consolidaciones o extensiones derivadas de los valores existentes. Los cuatro colores que definen la identidad (`#EB3A00`, `#D64700`, `#28303D`, `#FEF2EA`) se conservan **sin alteración**.
 
-### 2.5 ⚠️ Nota de accesibilidad
+### 2.6 ⚠️ Nota de accesibilidad
 
 `#EB3A00` sobre blanco tiene un ratio de contraste de aproximadamente **3.9:1**.
 

@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import logo from '@/assets/marca/logo-mipc.png';
 import { CONTACT, SOCIAL, SITE, mapsUrl } from '@/consts';
 
 const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
@@ -9,7 +11,10 @@ const year = new Date().getFullYear();
 <footer class="bg-ink-900 text-ink-300">
   <div class="container-mipc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
     <div>
-      <img src="/logo-mipc-blanco.svg" alt="MiPC Tecnología" width="150" height="72" loading="lazy" class="h-12 w-auto" />
+      {/* El gris del logotipo no contrasta sobre el fondo oscuro: va sobre una placa clara. */}
+      <div class="inline-block rounded-[10px] bg-white px-4 py-3">
+        <Image src={logo} alt="MiPC Tecnología" widths={[140, 280]} sizes="140px" loading="lazy" class="h-11 w-auto" />
+      </div>
       <p class="mt-4 text-sm leading-relaxed">
         Aliado estratégico en tecnología para empresas e instituciones de Medellín desde {SITE.foundingYear}.
       </p>
