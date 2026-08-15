@@ -3,8 +3,8 @@ title: Reparación y mantenimiento de computadores
 shortTitle: Reparación de Computadores
 order: 1
 seoTitle: Reparación de Computadores en Medellín | Servicio Técnico MiPC
-description: Servicio técnico de computadores en Laureles, Medellín. Diagnóstico con presupuesto previo, cambio de disco, memoria, pantallas, formateo y recuperación de información.
-summary: Realizamos reparación, mantenimiento preventivo y correctivo de computadores con personal capacitado y servicio rápido.
+description: Servicio técnico de computadores en Laureles, Medellín. Cualquier marca, incluido Apple. Diagnóstico de $25.000 abonable a la reparación y entrega en un día hábil.
+summary: Reparación y mantenimiento de cualquier marca, con diagnóstico previo y entrega en un día hábil en la mayoría de los casos.
 legacyAnchor: repara
 ctaText: ¿Tu computador falla? Escríbenos y te decimos qué tiene.
 whatsappMessage: 'Hola, necesito reparar mi computador.'
@@ -20,38 +20,51 @@ features:
 faqs:
   - q: ¿Cuánto cuesta reparar un computador?
     a: >-
-      Depende de la falla. Por eso primero hacemos el diagnóstico y te
-      entregamos un presupuesto antes de intervenir el equipo. Si decides no
-      continuar, no hay reparación y no hay sorpresas en el valor.
+      El diagnóstico tiene un costo de $25.000 y se abona al valor de la
+      reparación si decides continuar. El valor final depende de la falla y del
+      repuesto, y siempre te lo informamos antes de intervenir el equipo.
   - q: ¿Cuánto se demora la reparación?
     a: >-
-      Los mantenimientos y las fallas de software suelen resolverse el mismo
-      día. Cuando hay que pedir un repuesto, el tiempo depende de la
-      disponibilidad de la pieza; te lo confirmamos junto con el presupuesto.
+      La mayoría de los equipos quedan listos en un día hábil. Cuando hay que
+      conseguir un repuesto específico el plazo depende de la disponibilidad de
+      la pieza, y te lo confirmamos junto con el presupuesto.
+  - q: ¿Qué marcas de computadores atienden?
+    a: >-
+      Cualquier marca, incluidos equipos Apple. Atendemos portátiles y equipos
+      de escritorio, de marca o ensamblados, de uso personal o corporativo.
+  - q: ¿Reparan computadores Mac?
+    a: >-
+      Sí. Atendemos equipos Apple igual que cualquier otra marca, con el mismo
+      esquema de diagnóstico previo y presupuesto antes de intervenir.
+  - q: ¿Van hasta mi casa u oficina?
+    a: >-
+      Recogemos el equipo tanto de empresas como de personas naturales, pero la
+      reparación se realiza en nuestro taller de Laureles y no en el domicilio
+      del cliente. También puedes traerlo directamente.
   - q: ¿Voy a perder mi información?
     a: >-
       No trabajamos sobre tus datos sin avisarte. Si el procedimiento implica
       formatear, te lo decimos antes y coordinamos el respaldo. Si el equipo
       llega sin encender, evaluamos primero si la información es recuperable.
-  - q: ¿Atienden computadores portátiles y de escritorio?
-    a: >-
-      Sí, ambos. También atendemos equipos de marca y equipos ensamblados, de
-      uso personal o corporativo.
-  - q: ¿Necesito cita previa?
-    a: >-
-      No es obligatoria, pero escribirnos antes por WhatsApp ayuda: nos cuentas
-      qué está pasando y te decimos si conviene traer el equipo o si se puede
-      resolver de forma remota.
   - q: ¿La reparación tiene garantía?
     a: >-
-      Sí. Las piezas cambiadas y la mano de obra tienen garantía según lo
-      establecido en nuestras políticas. La garantía cubre el trabajo realizado,
+      Sí. Las piezas cambiadas tienen 90 días de garantía y la mano de obra 30
+      días. La garantía cubre el trabajo realizado sobre la pieza intervenida,
       no fallas distintas que aparezcan después.
 ---
 
 En **MiPC Tecnología** disponemos de personal capacitado en el soporte técnico de computadores, además de brindar un servicio rápido y de confianza. Llevamos desde 2009 atendiendo equipos de personas y empresas en Medellín desde nuestro punto en Laureles - Estadio.
 
 Trabajamos con una regla simple: **primero diagnosticamos, después te explicamos qué tiene el equipo y cuánto cuesta arreglarlo, y solo entonces intervenimos.** Nadie autoriza una reparación sin saber qué va a pagar.
+
+## En resumen
+
+- **Diagnóstico:** $25.000, que se abonan al valor de la reparación si decides continuar.
+- **Tiempo de entrega:** un día hábil en la mayoría de los casos.
+- **Marcas:** cualquiera, **incluido Apple**.
+- **Recogida:** vamos por el equipo, tanto a empresas como a personas.
+- **Garantía:** 90 días en piezas y 30 días en mano de obra.
+- **Presupuesto previo:** si no lo autorizas, el equipo no se interviene.
 
 ## Qué problemas resolvemos
 
@@ -81,15 +94,37 @@ Pantallazos azules, arranque en bucle, errores de disco. Según el caso reparamo
 
 Mantenimiento físico: limpieza interna, cambio de pasta térmica y revisión de ventiladores. Es el servicio más económico de todos y el que más vida útil agrega, y casi nadie lo hace hasta que el equipo ya falla.
 
+## Marcas que atendemos
+
+**Trabajamos con cualquier marca.** HP, Lenovo, Dell, Asus, Acer, Toshiba, MSI, equipos ensamblados
+y también **equipos Apple**.
+
+No derivamos a un centro autorizado ni cambiamos el trato según la marca: el mismo esquema de
+diagnóstico previo, presupuesto y garantía aplica para todos. Atendemos portátiles y equipos de
+escritorio, de uso personal o corporativo.
+
 ## Cómo funciona el servicio
 
-**1. Cuéntanos qué pasa.** Por WhatsApp o por teléfono. Con la descripción ya podemos orientarte sobre si conviene traer el equipo o si se resuelve de forma remota.
+**1. Cuéntanos qué pasa.** Por WhatsApp o por teléfono. Con la descripción ya podemos orientarte y
+coordinar si pasamos por el equipo o si prefieres traerlo.
 
-**2. Diagnóstico.** Revisamos el equipo, identificamos la falla y comprobamos el estado de disco, memoria y temperatura. Muchas veces aparece algo distinto a lo que el usuario creía.
+**2. Diagnóstico.** Revisamos el equipo, identificamos la falla y comprobamos el estado de disco,
+memoria y temperatura. Tiene un costo de **$25.000 que se abona a la reparación** si decides
+continuar. Muchas veces aparece algo distinto a lo que el usuario creía.
 
-**3. Presupuesto.** Te decimos qué tiene, qué se puede hacer y cuánto vale. **Si no autorizas, no se interviene.**
+**3. Presupuesto.** Te decimos qué tiene, qué se puede hacer y cuánto vale. **Si no autorizas, no
+se interviene.**
 
-**4. Reparación y entrega.** Ejecutamos el trabajo aprobado, probamos el equipo y te lo entregamos funcionando, explicándote qué se cambió.
+**4. Reparación y entrega.** La mayoría de los equipos quedan listos en **un día hábil**. Probamos
+el equipo antes de entregarlo y te explicamos qué se cambió.
+
+## Recogemos tu equipo
+
+Vamos por el computador tanto a **empresas como a personas naturales**. La reparación se realiza en
+nuestro taller de Laureles, con las herramientas y los repuestos a la mano; **no reparamos en el
+domicilio del cliente**, porque un diagnóstico serio no se hace sobre una mesa de comedor.
+
+También puedes traer el equipo directamente a nuestro punto, sin cita previa.
 
 ## Mantenimiento preventivo
 
@@ -111,21 +146,13 @@ También cubrimos lo que suele estar alrededor del problema: [redes de datos y c
 
 ## Dónde atendemos
 
-Nuestro punto de atención está en **Cra 66A #34-48 int 101, Laureles - Estadio**, y atendemos a clientes de Medellín y el Área Metropolitana. Para empresas coordinamos visita en sitio.
+Nuestro punto de atención está en **Cra 66A #34-48 int 101, Laureles - Estadio**, y atendemos a clientes de Medellín y el Área Metropolitana. Para empresas coordinamos recogida y entrega en sitio.
 
-Las condiciones de garantía de repuestos y mano de obra están detalladas en nuestras [políticas y garantías](/garantias/).
+Las piezas cambiadas tienen **90 días de garantía** y la mano de obra **30 días**. El detalle completo está en nuestras [políticas y garantías](/garantias/).
 
 <!--
-  ⚠️ POR CONFIRMAR CON EL CLIENTE antes de publicar:
-
-  1. Marcas que atienden (HP, Lenovo, Dell, Asus, Acer, Apple...). Listarlas
-     capta busquedas del tipo "reparacion portatil HP Medellin".
-  2. Si atienden equipos Apple / macOS.
-  3. Tiempos de respuesta reales, para reemplazar las respuestas genericas
-     de las preguntas frecuentes por cifras concretas.
-  4. Si el diagnostico tiene costo y cual es. Hoy la pagina evita el tema.
-  5. Si hacen servicio a domicilio para persona natural, o solo empresas.
-  6. Plazo real de garantia de mano de obra. Las politicas publicadas dicen
-     30 dias para mano de obra y 90 para piezas: confirmar que siga vigente.
+  Pendiente menor: confirmar si los $25.000 del diagnostico incluyen IVA.
+  Las politicas publicadas hablan de "$25.000 mas IVA" para el diagnostico
+  de garantias, que puede ser un caso distinto.
 -->
 
