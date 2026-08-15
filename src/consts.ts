@@ -25,6 +25,8 @@ export const CONTACT = {
   email: 'soporte@mipc.com.co',
   street: 'Cra 66A #34-48 int 101',
   neighborhood: 'Laureles - Estadio',
+  // Fuente: factura de Hostinger a nombre de MIPC TECNOLOGIA SAS.
+  postalCode: '050023',
   city: 'Medellín',
   region: 'Antioquia',
   country: 'CO',
@@ -37,7 +39,8 @@ export const CONTACT = {
     { days: 'Sábados', time: '9:00 a.m. – 1:00 p.m.' },
   ],
   hoursSchema: ['Mo-Fr 08:00-17:00', 'Sa 09:00-13:00'],
-  // TODO(cliente): solicitar NIT y código postal para la ficha legal.
+  // TODO(cliente): solicitar el NIT. Es el identificador inequivoco de la empresa
+  // en Colombia y desambigua la marca frente a las otras "MiPC" del pais.
   nit: null as string | null,
 } as const;
 
