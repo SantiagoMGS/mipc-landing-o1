@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import { cotizacion } from '@/lib/imagenes';
+import { waLink } from '@/consts';
+---
+
+<section class="bg-ink-900 py-16 text-white">
+  <div class="container-mipc grid items-center gap-10 lg:grid-cols-2">
+    <div>
+      <Image
+        src={cotizacion}
+        alt=""
+        widths={[200, 400]}
+        sizes="200px"
+        loading="lazy"
+        class="mb-6 h-32 w-auto object-contain"
+      />
+      <h2 class="font-display text-3xl font-bold text-white">Solicita tu cotización</h2>
+      <p class="mt-4 text-ink-300">
+        Queremos atenderte de la mejor manera. Escríbenos y con gusto te ayudamos a resolver tu
+        necesidad tecnológica.
+      </p>
+    </div>
+
+    <!-- Los dos CTAs del sitio original apuntaban a la misma URL.
+         Aquí cada perfil va a su flujo real. -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="rounded-[10px] bg-white/5 p-6">
+        <h3 class="font-display text-lg font-bold text-white">Soy persona</h3>
+        <p class="mt-2 text-sm text-ink-300">Tu equipo falla y necesitas una respuesta rápida.</p>
+        <Button href={waLink('Hola, tengo un problema con mi computador.')} variant="whatsapp" external class="mt-4 w-full">
+          Escribir por WhatsApp
+        </Button>
+      </div>
+
+      <div class="rounded-[10px] bg-white/5 p-6">
+        <h3 class="font-display text-lg font-bold text-white">Soy empresa</h3>
+        <p class="mt-2 text-sm text-ink-300">Necesitas una propuesta formal o soporte recurrente.</p>
+        <Button href="/contacto/?perfil=empresa" variant="primary" class="mt-4 w-full">
+          Solicitar cotización
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

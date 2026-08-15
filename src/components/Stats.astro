@@ -1,0 +1,64 @@
+---
+import { STATS } from '@/consts';
+// Los indicadores sin valor confirmado no se renderizan (ver docs/01 §5.1).
+const stats = STATS.filter((s) => s.value !== null) as { value: number; label: string }[];
+---
+
+<section class="bg-brand-50 py-16">
+  <div class="container-mipc">
+    <h2 class="text-center font-display text-3xl font-bold text-ink-900">Al día de hoy hemos realizado</h2>
+    <dl class="mt-10 grid gap-8 sm:grid-cols-3">
+      {stats.map((s) => (
+        <div class="text-center">
+          <dt class="sr-only">{s.label}</dt>
+          <dd>
+            <span
+              class="counter font-display text-5xl font-bold text-brand-500"
+              data-target={s.value}
+              aria-label={`Más de ${s.value.toLocaleString('es-CO')}`}
+            >
+              +0
+            </span>
+            <p class="mt-2 text-[16px] text-ink-700">{s.label}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script>
+  const els = document.querySelectorAll<HTMLElement>('.counter');
+  const fmt = new Intl.NumberFormat('es-CO');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const run = (el: HTMLElement) => {
+    const target = Number(el.dataset.target ?? 0);
+    if (reduce) {
+      el.textContent = `+${fmt.format(target)}`;
+      return;
+    }
+    const start = performance.now();
+    const step = (now: number) => {
+      const p = Math.min((now - start) / 1400, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = `+${fmt.format(Math.floor(target * eased))}`;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          run(e.target as HTMLElement);
+          io.unobserve(e.target);
+        }
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  els.forEach((el) => io.observe(el));
+</script>

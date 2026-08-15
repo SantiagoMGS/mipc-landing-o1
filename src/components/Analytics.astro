@@ -1,0 +1,47 @@
+---
+/* Consent Mode v2 + gtag.js. No carga nada si no hay IDs configurados,
+   así el entorno local queda limpio. */
+const GA4 = import.meta.env.PUBLIC_GA4_ID ?? '';
+const ADS = import.meta.env.PUBLIC_GOOGLE_ADS_ID ?? '';
+const enabled = Boolean(GA4 || ADS);
+const primaryId = GA4 || ADS;
+
+const bootstrap = `
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  var granted = false;
+  try { granted = localStorage.getItem('mipc-consent') === 'granted'; } catch (e) {}
+  var state = granted ? 'granted' : 'denied';
+
+  gtag('consent', 'default', {
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+
+  // Con consentimiento denegado, Google usa pings sin cookies (conversiones modeladas).
+  gtag('set', 'ads_data_redaction', !granted);
+  gtag('set', 'url_passthrough', true);
+
+  gtag('js', new Date());
+  ${GA4 ? `gtag('config', ${JSON.stringify(GA4)});` : ''}
+  ${ADS ? `gtag('config', ${JSON.stringify(ADS)});` : ''}
+})();
+`;
+---
+
+{
+  enabled && (
+    <>
+      <script is:inline set:html={bootstrap} />
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${primaryId}`} />
+    </>
+  )
+}

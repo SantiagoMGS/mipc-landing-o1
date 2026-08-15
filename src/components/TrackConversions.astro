@@ -1,0 +1,33 @@
+---
+/* Marca las tres acciones que valen como lead: WhatsApp, llamada y formulario. */
+const enabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_GOOGLE_ADS_ID);
+const sendTo = import.meta.env.PUBLIC_ADS_CONVERSION_SEND_TO ?? '';
+
+const logica = `
+(function () {
+  var SEND_TO = ${JSON.stringify(sendTo)};
+
+  function registrar(metodo) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', 'generate_lead', { metodo: metodo, contexto: location.pathname });
+    if (SEND_TO) window.gtag('event', 'conversion', { send_to: SEND_TO });
+  }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!el) return;
+    var href = el.getAttribute('href') || '';
+
+    if (href.indexOf('wa.me') !== -1) registrar('whatsapp');
+    else if (href.indexOf('tel:') === 0) registrar('llamada');
+    else if (href.indexOf('mailto:') === 0) registrar('correo');
+  }, true);
+
+  document.addEventListener('submit', function (e) {
+    if (e.target && e.target.tagName === 'FORM') registrar('formulario');
+  });
+})();
+`;
+---
+
+{enabled && <script is:inline set:html={logica} />}

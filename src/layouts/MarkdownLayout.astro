@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  frontmatter: { title: string; seoTitle?: string; description: string; updated?: string };
+}
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.seoTitle ?? frontmatter.title} description={frontmatter.description}>
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc">
+      <h1 class="font-display text-4xl font-bold text-ink-900">{frontmatter.title}</h1>
+      {frontmatter.updated && (
+        <p class="mt-3 text-sm text-ink-500">Última actualización: {frontmatter.updated}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-14">
+    <article class="container-mipc prose-mipc max-w-3xl">
+      <slot />
+    </article>
+  </section>
+</BaseLayout>

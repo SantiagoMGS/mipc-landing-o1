@@ -1,0 +1,158 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { CONTACT, waLink, mapsUrl } from '@/consts';
+
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
+// Clave pública de Web3Forms (no es un secreto: identifica el buzón destino).
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+// El mapa apunta a la ficha real de Google Business Profile, no a una búsqueda por texto.
+const mapEmbed = `https://maps.google.com/maps?cid=${CONTACT.googleCid}&output=embed`;
+---
+
+<BaseLayout
+  title="Contacto — Cotiza tu servicio TI en Medellín | MiPC Tecnología"
+  description="Contáctanos en Laureles, Medellín. Escríbenos por WhatsApp, llámanos al 314 888 90 78 o diligencia el formulario y te respondemos con una propuesta."
+>
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc">
+      <h1 class="font-display text-4xl font-bold text-ink-900">Contacto</h1>
+      <p class="mt-4 max-w-3xl text-lg">
+        Cuéntanos qué necesitas. Respondemos en horario laboral.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="container-mipc grid gap-12 lg:grid-cols-[1fr_380px]">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink-900">Escríbenos</h2>
+
+        {!formKey && (
+          <p class="mt-4 rounded-[5px] border-2 border-brand-500 bg-brand-50 p-4 text-[15px]">
+            <strong>Pendiente de configuración:</strong> define <code>PUBLIC_WEB3FORMS_KEY</code> en
+            el archivo <code>.env</code> para activar el envío del formulario.
+          </p>
+        )}
+
+        <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-5">
+          <input type="hidden" name="access_key" value={formKey} />
+          <input type="hidden" name="subject" value="Nueva solicitud desde mipc.com.co" />
+          <input type="hidden" name="from_name" value="Web MiPC Tecnología" />
+          <input type="hidden" name="redirect" value="https://mipc.com.co/gracias/" />
+          {/* Honeypot antispam: los bots la rellenan, las personas no la ven. */}
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="nombre" class="block font-medium text-ink-900">Nombre completo *</label>
+              <input id="nombre" name="nombre" type="text" required autocomplete="name"
+                class="mt-2 w-full rounded-[5px] border-2 border-ink-100 px-4 py-3 focus:border-brand-500 focus:outline-none" />
+            </div>
+            <div>
+              <label for="empresa" class="block font-medium text-ink-900">Empresa</label>
+              <input id="empresa" name="empresa" type="text" autocomplete="organization"
+                class="mt-2 w-full rounded-[5px] border-2 border-ink-100 px-4 py-3 focus:border-brand-500 focus:outline-none" />
+            </div>
+            <div>
+              <label for="email" class="block font-medium text-ink-900">Correo electrónico *</label>
+              <input id="email" name="email" type="email" required autocomplete="email"
+                class="mt-2 w-full rounded-[5px] border-2 border-ink-100 px-4 py-3 focus:border-brand-500 focus:outline-none" />
+            </div>
+            <div>
+              <label for="telefono" class="block font-medium text-ink-900">Teléfono *</label>
+              <input id="telefono" name="telefono" type="tel" required autocomplete="tel"
+                class="mt-2 w-full rounded-[5px] border-2 border-ink-100 px-4 py-3 focus:border-brand-500 focus:outline-none" />
+            </div>
+          </div>
+
+          <fieldset>
+            <legend class="font-medium text-ink-900">¿Cómo nos contactas? *</legend>
+            <div class="mt-2 flex gap-6">
+              <label class="flex items-center gap-2">
+                <input type="radio" name="perfil" value="persona" required class="accent-brand-500" />
+                Como persona
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="radio" name="perfil" value="empresa" class="accent-brand-500" />
+                Como empresa
+              </label>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="servicio" class="block font-medium text-ink-900">Servicio de interés *</label>
+            <select id="servicio" name="servicio" required
+              class="mt-2 w-full rounded-[5px] border-2 border-ink-100 bg-white px-4 py-3 focus:border-brand-500 focus:outline-none">
+              <option value="">Selecciona una opción</option>
+              {servicios.map((s) => <option value={s.data.shortTitle}>{s.data.shortTitle}</option>)}
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="mensaje" class="block font-medium text-ink-900">Cuéntanos qué necesitas *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required
+              class="mt-2 w-full rounded-[5px] border-2 border-ink-100 px-4 py-3 focus:border-brand-500 focus:outline-none"></textarea>
+          </div>
+
+          <label class="flex items-start gap-3 text-[15px]">
+            <input type="checkbox" name="habeas_data" required class="mt-1 accent-brand-500" />
+            <span>
+              Autorizo el tratamiento de mis datos personales conforme a la
+              <a href="/privacidad/" class="text-brand-700 underline">política de tratamiento de datos</a>. *
+            </span>
+          </label>
+
+          <button type="submit"
+            class="justify-self-start rounded-[5px] bg-brand-500 px-8 py-4 font-display text-[17px] font-bold text-white transition hover:bg-brand-600">
+            Enviar solicitud
+          </button>
+        </form>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="rounded-[10px] border border-ink-100 p-6">
+          <h2 class="font-display text-xl font-bold text-ink-900">Datos de contacto</h2>
+          <address class="mt-4 space-y-3 text-[16px] not-italic">
+            <p>
+              <span class="block font-medium text-ink-900">Dirección</span>
+              {CONTACT.street}<br />{CONTACT.neighborhood}<br />{CONTACT.city}, {CONTACT.region}
+              <a href={mapsUrl()} target="_blank" rel="noopener noreferrer" class="mt-1 block text-brand-700 underline">
+                Ver en Google Maps
+              </a>
+            </p>
+            <p>
+              <span class="block font-medium text-ink-900">Teléfono</span>
+              <a href={`tel:${CONTACT.phoneIntl}`} class="text-brand-700 underline">{CONTACT.phoneDisplay}</a>
+            </p>
+            <p>
+              <span class="block font-medium text-ink-900">Correo</span>
+              <a href={`mailto:${CONTACT.email}`} class="text-brand-700 underline">{CONTACT.email}</a>
+            </p>
+          </address>
+          <div class="mt-4 text-[16px]">
+            <span class="block font-medium text-ink-900">Horario</span>
+            {CONTACT.hours.map((h) => <p>{h.days}: {h.time}</p>)}
+          </div>
+          <a href={waLink()} target="_blank" rel="noopener noreferrer"
+            class="mt-5 block rounded-[5px] bg-whatsapp px-6 py-3 text-center font-display font-bold text-white">
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+        <div class="overflow-hidden rounded-[10px] border border-ink-100">
+          <iframe
+            title={`Ubicación de MiPC Tecnología en ${CONTACT.city}`}
+            src={mapEmbed}
+            width="100%"
+            height="280"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            style="border:0"
+          ></iframe>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

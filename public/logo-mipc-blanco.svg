@@ -1,0 +1,7 @@
+<!-- PLACEHOLDER. Versión para fondo oscuro (footer). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 144" width="300" height="144" role="img" aria-label="MiPC Tecnología">
+  <text x="8" y="88" font-family="'Baloo Chettan 2', system-ui, sans-serif" font-size="76" font-weight="700" fill="#FFFFFF">mi</text>
+  <text x="88" y="88" font-family="'Baloo Chettan 2', system-ui, sans-serif" font-size="76" font-weight="700" fill="#EB3A00">pc</text>
+  <path d="M196 46 c14 -18 30 -30 52 -34 -18 12 -32 26 -42 44" fill="#EB3A00"/>
+  <text x="10" y="122" font-family="'Raleway', system-ui, sans-serif" font-size="24" font-weight="500" letter-spacing="7" fill="#ADADAD">Tecnología</text>
+</svg>

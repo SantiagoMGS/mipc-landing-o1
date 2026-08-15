@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { waLink } from '@/consts';
+---
+
+<BaseLayout title="Página no encontrada | MiPC Tecnología" noindex>
+  <section class="py-24">
+    <div class="container-mipc max-w-2xl text-center">
+      <p class="font-display text-6xl font-bold text-brand-500">404</p>
+      <h1 class="mt-4 font-display text-3xl font-bold text-ink-900">Esta página no existe</h1>
+      <p class="mt-4 text-lg">
+        Puede que el enlace esté desactualizado o que la página haya cambiado de dirección.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href="/" variant="primary">Ir al inicio</Button>
+        <Button href="/servicios/" variant="secondary">Ver servicios</Button>
+        <Button href={waLink()} variant="ghost" external>Escribirnos</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

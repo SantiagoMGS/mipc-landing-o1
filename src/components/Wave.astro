@@ -1,0 +1,22 @@
+---
+/** Onda divisora: el elemento gráfico más distintivo del sitio original. */
+interface Props {
+  color?: string;
+  flip?: boolean;
+  class?: string;
+}
+const { color = 'var(--color-brand-500)', flip = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['pointer-events-none w-full leading-none', className]} aria-hidden="true">
+  <svg
+    viewBox="0 0 1440 90"
+    preserveAspectRatio="none"
+    class:list={['block h-[50px] w-full md:h-[90px]', flip && 'rotate-180']}
+  >
+    <path
+      d="M0,32 C240,88 480,88 720,56 C960,24 1200,24 1440,56 L1440,90 L0,90 Z"
+      fill={color}
+    />
+  </svg>
+</div>

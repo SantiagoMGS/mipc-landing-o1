@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/* Auto-hospedadas, solo los 5 pesos realmente usados y subset latin.
+   El sitio anterior cargaba 4 familias x 18 variantes desde Google Fonts. */
+@import '@fontsource/baloo-chettan-2/latin-600.css';
+@import '@fontsource/baloo-chettan-2/latin-700.css';
+@import '@fontsource/raleway/latin-400.css';
+@import '@fontsource/raleway/latin-500.css';
+@import '@fontsource/raleway/latin-700.css';
+
+/* =============================================================
+   Tokens de diseño — ver docs/02-identidad-visual.md
+   Los 4 colores de marca se conservan sin alteración respecto
+   al sitio WordPress original.
+   ============================================================= */
+@theme {
+  --color-brand-50: #fef2ea;
+  --color-brand-100: #fde0cf;
+  --color-brand-500: #eb3a00;
+  --color-brand-600: #d64700;
+  --color-brand-700: #b33200;
+
+  --color-ink-900: #28303d;
+  --color-ink-700: #54595f;
+  --color-ink-500: #7a7a7a;
+  --color-ink-300: #adadad;
+  --color-ink-100: #e8e8e8;
+
+  --color-whatsapp: #25d366;
+
+  --font-display: 'Baloo Chettan 2', system-ui, sans-serif;
+  --font-body: 'Raleway', system-ui, sans-serif;
+
+  --radius-btn: 5px;
+  --radius-card: 10px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-ink-700);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink-900);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* El sitio original no tenía foco visible en teclado. */
+  :focus-visible {
+    outline: 3px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-mipc {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .prose-mipc :is(h2) {
+    font-size: 1.5rem;
+    margin-block: 2rem 0.75rem;
+  }
+  .prose-mipc :is(h3) {
+    font-size: 1.2rem;
+    margin-block: 1.5rem 0.5rem;
+  }
+  .prose-mipc :is(p, ul, ol) {
+    margin-block: 0.75rem;
+  }
+  .prose-mipc :is(ul, ol) {
+    padding-left: 1.5rem;
+  }
+  .prose-mipc :is(ul) {
+    list-style: disc;
+  }
+  .prose-mipc :is(ol) {
+    list-style: decimal;
+  }
+  .prose-mipc :is(a) {
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-mipc :is(strong) {
+    color: var(--color-ink-900);
+  }
+}

@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import CtaQuote from '@/components/CtaQuote.astro';
+import { IMAGENES_SERVICIO } from '@/lib/imagenes';
+
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
+const anchorMap = Object.fromEntries(servicios.map((s) => [s.data.legacyAnchor, `/servicios/${s.id}/`]));
+---
+
+<BaseLayout
+  title="Servicios de Tecnología en Medellín | MiPC Tecnología"
+  description="Reparación de computadores, redes de datos, cámaras de seguridad, alquiler de equipos y mesa de ayuda TI para empresas e instituciones en Medellín."
+>
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc">
+      <h1 class="font-display text-4xl font-bold text-ink-900">Nuestros servicios</h1>
+      <p class="mt-4 max-w-3xl text-lg">
+        Somos un aliado estratégico con soluciones enfocadas en aumentar la productividad de
+        nuestros clientes, garantizar su seguridad informática y automatizar las tareas del día a
+        día.
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-display font-bold text-brand-600">
+        <li>Sinergia</li>
+        <li aria-hidden="true">·</li>
+        <li>Recursividad</li>
+        <li aria-hidden="true">·</li>
+        <li>Soporte</li>
+        <li aria-hidden="true">·</li>
+        <li>Actualización</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-mipc grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {servicios.map((s) => (
+        <ServiceCard
+          title={s.data.shortTitle}
+          summary={s.data.summary}
+          href={`/servicios/${s.id}/`}
+          image={IMAGENES_SERVICIO[s.id]}
+        />
+      ))}
+    </div>
+  </section>
+
+  <CtaQuote />
+
+  <!-- Las anclas del sitio WordPress (#repara, #redes, ...) no llegan al
+       servidor, así que se resuelven en cliente hacia la landing nueva. -->
+  <script is:inline set:html={`
+    (function () {
+      var map = ${JSON.stringify(anchorMap)};
+      var target = map[location.hash.slice(1)];
+      if (target) location.replace(target);
+    })();
+  `} />
+</BaseLayout>

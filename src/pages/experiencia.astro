@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Stats from '@/components/Stats.astro';
+import ClientLogos from '@/components/ClientLogos.astro';
+import CtaQuote from '@/components/CtaQuote.astro';
+
+const sectores = [
+  { name: 'Medios de comunicación', detail: 'Emisoras y medios con operación continua que no pueden permitirse caídas.' },
+  { name: 'Salud', detail: 'IPS y centros clínicos con requerimientos de disponibilidad y manejo de datos sensibles.' },
+  { name: 'Educación', detail: 'Instituciones educativas con salas de cómputo y redes de alta concurrencia.' },
+  { name: 'Industria y distribución', detail: 'Plantas y bodegas con necesidades de red, videovigilancia y control de acceso.' },
+];
+---
+
+<BaseLayout
+  title="Experiencia y Clientes — Proyectos TI en Medellín | MiPC"
+  description="Más de 15 años ejecutando proyectos de soporte TI, redes de datos y videovigilancia para empresas e instituciones de Medellín en salud, educación, medios e industria."
+>
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc">
+      <h1 class="font-display text-4xl font-bold text-ink-900">Nuestra experiencia</h1>
+      <p class="mt-4 max-w-3xl text-lg">
+        A través de los años y la experiencia adquirida nos hemos transformado en aliados
+        estratégicos para nuestros clientes.
+      </p>
+    </div>
+  </section>
+
+  <Stats />
+
+  <section class="py-16">
+    <div class="container-mipc">
+      <h2 class="font-display text-3xl font-bold text-ink-900">Sectores que atendemos</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {sectores.map((s) => (
+          <article class="rounded-[10px] border border-ink-100 p-7">
+            <h3 class="font-display text-xl font-bold text-ink-900">{s.name}</h3>
+            <p class="mt-2 text-[16px]">{s.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ClientLogos />
+
+  {/* TODO(cliente): incorporar 2-3 testimonios y 2 casos de éxito documentados.
+      Es el vacío más grande de contenido heredado (la página anterior tenía 38 palabras). */}
+
+  <CtaQuote />
+</BaseLayout>

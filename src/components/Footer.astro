@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import { CONTACT, SOCIAL, SITE, mapsUrl } from '@/consts';
+
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink-900 text-ink-300">
+  <div class="container-mipc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <img src="/logo-mipc-blanco.svg" alt="MiPC Tecnología" width="150" height="72" loading="lazy" class="h-12 w-auto" />
+      <p class="mt-4 text-sm leading-relaxed">
+        Aliado estratégico en tecnología para empresas e instituciones de Medellín desde {SITE.foundingYear}.
+      </p>
+      <div class="mt-4 flex gap-4 text-sm">
+        <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Facebook</a>
+        <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Instagram</a>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="font-display text-base font-bold tracking-wide text-white uppercase">Servicios</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        {servicios.map((s) => (
+          <li>
+            <a href={`/servicios/${s.id}/`} class="hover:text-white transition">{s.data.shortTitle}</a>
+          </li>
+        ))}
+        <li>
+          <a href={SOCIAL.shop} target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
+            Compra de equipos
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="font-display text-base font-bold tracking-wide text-white uppercase">Empresa</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/nosotros/" class="hover:text-white transition">Nosotros</a></li>
+        <li><a href="/experiencia/" class="hover:text-white transition">Experiencia</a></li>
+        <li><a href="/blog/" class="hover:text-white transition">Blog</a></li>
+        <li><a href="/recursos/" class="hover:text-white transition">Recursos</a></li>
+        <li><a href="/garantias/" class="hover:text-white transition">Políticas y garantías</a></li>
+        <li><a href="/privacidad/" class="hover:text-white transition">Tratamiento de datos</a></li>
+        <li><a href="/contacto/" class="hover:text-white transition">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- NAP completo y consistente: requisito para SEO local. -->
+    <div>
+      <h2 class="font-display text-base font-bold tracking-wide text-white uppercase">Contacto</h2>
+      <address class="mt-4 space-y-2 text-sm not-italic">
+        <p>
+          {CONTACT.street}<br />{CONTACT.neighborhood}<br />{CONTACT.city}, {CONTACT.region}
+        </p>
+        <p>
+          <a href={mapsUrl()} target="_blank" rel="noopener noreferrer" class="hover:text-white transition underline">
+            Ver en Google Maps
+          </a>
+        </p>
+        <p>
+          <a href={`tel:${CONTACT.phoneIntl}`} class="font-semibold text-white hover:text-brand-100 transition">
+            {CONTACT.phoneDisplay}
+          </a>
+        </p>
+        <p>
+          <a href={`mailto:${CONTACT.email}`} class="hover:text-white transition">{CONTACT.email}</a>
+        </p>
+      </address>
+      <div class="mt-4 text-sm">
+        <p class="font-semibold text-white">Horario</p>
+        {CONTACT.hours.map((h) => <p>{h.days}: {h.time}</p>)}
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-mipc flex flex-col gap-2 py-5 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {SITE.legalName}. Todos los derechos reservados.</p>
+      <p>Medellín — Colombia</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,27 @@
+# Redirecciones 301 — migración WordPress -> Astro
+# Formato Cloudflare Pages / Netlify. Ver docs/04-inventario-contenido.md §5
+
+# Páginas con prefijo /home/ heredado
+/home/servicios/                        /servicios/     301
+/home/servicios-mipc-tecnologia-copy/   /nosotros/      301
+/home/experiencia/                      /experiencia/   301
+/home/actualidad/                       /blog/          301
+/home/contacto/                         /contacto/      301
+/home/                                  /               301
+
+# Alias antiguos de la página de servicios
+/servicios-mipc-tecnologia/             /nosotros/      301
+
+# Entradas de blog despublicadas (contenido no relacionado con el negocio)
+/google-anuncia-actualizaciones-de-sus-productos-de-realidad-virtual-y-aumentada/  /blog/  301
+/amazon-anuncia-la-adquisicion-de-la-empresa-de-tecnologia-cuantica-psiquantum/    /blog/  301
+/intel-anuncia-nuevos-procesadores-de-escritorio-core-de-12a-generacion/           /blog/  301
+
+# Rutas de WordPress que ya no existen
+/wp-admin/*      /404.html   404
+/wp-login.php    /404.html   404
+/wp-content/*    /404.html   404
+/wp-includes/*   /404.html   404
+/feed/           /blog/      301
+/category/*      /blog/      301
+/author/*        /           301

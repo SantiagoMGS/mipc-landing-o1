@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { reviewUrl } from '@/consts';
+
+/* URL corta y dictable por teléfono: "mipc.com.co/resena".
+   Redirige a Google y queda medible en analítica. */
+const destino = reviewUrl();
+---
+
+<BaseLayout
+  title="Déjanos tu reseña | MiPC Tecnología"
+  description="Cuéntanos cómo te fue con nuestro servicio dejando una reseña en Google."
+  noindex
+>
+  <Fragment slot="head">
+    <meta http-equiv="refresh" content={`3;url=${destino}`} />
+  </Fragment>
+
+  <section class="py-24">
+    <div class="container-mipc max-w-2xl text-center">
+      <p class="font-display text-5xl" aria-hidden="true">⭐</p>
+      <h1 class="mt-4 font-display text-3xl font-bold text-ink-900">Gracias por tu confianza</h1>
+      <p class="mt-4 text-lg">
+        Tu opinión ayuda a que más personas en Medellín encuentren un servicio técnico confiable.
+        Te estamos llevando a Google para que nos califiques.
+      </p>
+
+      <a
+        href={destino}
+        rel="noopener noreferrer"
+        class="mt-8 inline-block rounded-[5px] bg-brand-500 px-8 py-4 font-display text-[17px] font-bold text-white transition hover:bg-brand-600"
+      >
+        Escribir mi reseña en Google
+      </a>
+
+      <p class="mt-6 text-sm text-ink-500">
+        Si no te redirige automáticamente, toca el botón.
+      </p>
+
+      <p class="mt-10 text-[15px]">
+        ¿Algo no salió bien? Preferimos saberlo primero.
+        <a href="/contacto/" class="text-brand-700 underline">Escríbenos</a> y lo resolvemos.
+      </p>
+    </div>
+  </section>
+
+  <script is:inline set:html={`setTimeout(function(){ location.replace(${JSON.stringify(destino)}); }, 1200);`} />
+</BaseLayout>

@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ClientLogos from '@/components/ClientLogos.astro';
+import CtaQuote from '@/components/CtaQuote.astro';
+import Wave from '@/components/Wave.astro';
+import { IMAGENES_SERVICIO, heroTecnico } from '@/lib/imagenes';
+import { SITE, CONTACT, waLink } from '@/consts';
+
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- Hero: visible en TODOS los breakpoints. En el sitio anterior
+       desaparecía por completo en móvil. -->
+  <section class="bg-gradient-to-b from-brand-50 to-white py-14 md:py-20">
+    <div class="container-mipc grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="font-display font-bold uppercase tracking-wide text-brand-600">
+          {CONTACT.neighborhood}, {CONTACT.city} · Desde {SITE.foundingYear}
+        </p>
+        <h1 class="mt-3 font-display text-4xl font-bold leading-tight text-ink-900 md:text-5xl">
+          Nosotros reparamos tu computador
+        </h1>
+        <p class="mt-5 text-lg">
+          Antivirus, programas, pantallas rotas, cambio de disco duro, formateo, instalación de
+          sistema operativo y rescate de información. Diagnóstico claro y presupuesto antes de
+          intervenir.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button href={waLink('Hola, necesito reparar mi computador.')} variant="primary" external>
+            Escríbenos por WhatsApp
+          </Button>
+          <Button href={`tel:${CONTACT.phoneIntl}`} variant="secondary">
+            Llamar {CONTACT.phoneDisplay}
+          </Button>
+        </div>
+      </div>
+
+      <div class="rounded-[10px] border border-brand-100 bg-white p-8 shadow-sm">
+        <Image
+          src={heroTecnico}
+          alt="Técnico de MiPC Tecnología atendiendo un equipo"
+          widths={[420, 840]}
+          sizes="(min-width: 1024px) 420px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="mx-auto h-auto w-full max-w-sm"
+        />
+        <h2 class="mt-6 font-display text-2xl font-bold text-ink-900">Experiencia demostrada</h2>
+        <p class="mt-3">
+          A través de los años nos hemos transformado en aliados estratégicos para nuestros
+          clientes, con soluciones tecnológicas para empresas e instituciones.
+        </p>
+        <Button href="/experiencia/" variant="ghost" class="mt-6">Ver nuestra experiencia</Button>
+      </div>
+    </div>
+  </section>
+
+  <Wave color="var(--color-ink-900)" class="-mb-px" />
+
+  <section class="bg-ink-900 py-14">
+    <div class="container-mipc text-center">
+      <h2 class="font-display text-3xl font-bold text-white">Nuestros servicios</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-ink-300">
+        Cinco líneas de servicio para mantener tu tecnología funcionando.
+      </p>
+    </div>
+  </section>
+
+  <Wave color="var(--color-ink-900)" flip class="-mt-px" />
+
+  <section class="pb-16">
+    <div class="container-mipc grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {servicios.map((s) => (
+        <ServiceCard
+          title={s.data.shortTitle}
+          summary={s.data.summary}
+          href={`/servicios/${s.id}/`}
+          image={IMAGENES_SERVICIO[s.id]}
+        />
+      ))}
+    </div>
+  </section>
+
+  <CtaQuote />
+
+  {posts.length > 0 && (
+    <section class="py-16">
+      <div class="container-mipc">
+        <div class="flex items-end justify-between gap-4">
+          <h2 class="font-display text-3xl font-bold text-ink-900">Del blog</h2>
+          <a href="/blog/" class="font-display font-bold text-brand-600 hover:text-brand-700">Ver todo</a>
+        </div>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          {posts.map((p) => (
+            <article class="rounded-[10px] border border-ink-100 p-6 transition hover:border-brand-500">
+              <time datetime={p.data.pubDate.toISOString()} class="text-sm text-ink-500">
+                {p.data.pubDate.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+              <h3 class="mt-2 font-display text-lg font-bold">
+                <a href={`/blog/${p.id}/`} class="hover:text-brand-600">{p.data.title}</a>
+              </h3>
+              <p class="mt-2 text-[16px]">{p.data.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <ClientLogos />
+</BaseLayout>

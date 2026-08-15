@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import ClientLogos from '@/components/ClientLogos.astro';
+import { IMAGENES_SERVICIO } from '@/lib/imagenes';
+import { SITE, CONTACT, waLink } from '@/consts';
+
+export const getStaticPaths = (async () => {
+  const servicios = await getCollection('servicios');
+  return servicios.map((servicio) => ({ params: { id: servicio.id }, props: { servicio } }));
+}) satisfies GetStaticPaths;
+
+const { servicio } = Astro.props;
+const { Content } = await render(servicio);
+const d = servicio.data;
+const ilustracion = IMAGENES_SERVICIO[servicio.id];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: d.title,
+  description: d.description,
+  serviceType: d.shortTitle,
+  areaServed: { '@type': 'City', name: 'Medellín' },
+  provider: { '@id': `${SITE.url}/#business` },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${SITE.url}/servicios/` },
+    { '@type': 'ListItem', position: 3, name: d.shortTitle },
+  ],
+};
+---
+
+<BaseLayout title={d.seoTitle} description={d.description}>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumb)} />
+
+  <nav aria-label="Ruta de navegación" class="border-b border-ink-100">
+    <ol class="container-mipc flex flex-wrap gap-2 py-3 text-sm text-ink-500">
+      <li><a href="/" class="hover:text-brand-600">Inicio</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/servicios/" class="hover:text-brand-600">Servicios</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-ink-900">{d.shortTitle}</li>
+    </ol>
+  </nav>
+
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc grid items-center gap-8 md:grid-cols-[1fr_auto]">
+      <div>
+        <h1 class="font-display text-4xl font-bold text-ink-900">{d.title}</h1>
+        <p class="mt-4 max-w-3xl text-lg">{d.summary}</p>
+      </div>
+      {ilustracion && (
+        <Image
+          src={ilustracion}
+          alt=""
+          widths={[240, 480]}
+          sizes="240px"
+          loading="eager"
+          fetchpriority="high"
+          class="hidden h-48 w-auto object-contain md:block"
+        />
+      )}
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="container-mipc grid gap-12 lg:grid-cols-[1fr_360px]">
+      <div class="prose-mipc max-w-none">
+        <Content />
+
+        <h2>Qué incluye</h2>
+        <ul class="not-prose mt-4 grid gap-3 sm:grid-cols-2">
+          {d.features.map((f) => (
+            <li class="flex items-start gap-2">
+              <svg class="mt-1 shrink-0 text-brand-500" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="h-fit rounded-[10px] border border-ink-100 bg-white p-7 lg:sticky lg:top-32">
+        <h2 class="font-display text-xl font-bold text-ink-900">{d.ctaText}</h2>
+        <p class="mt-3 text-[16px]">
+          Cuéntanos qué necesitas y te respondemos con una propuesta clara.
+        </p>
+        <div class="mt-6 flex flex-col gap-3">
+          <Button href={waLink(d.whatsappMessage)} variant="whatsapp" external>WhatsApp</Button>
+          <Button href="/contacto/" variant="secondary">Formulario web</Button>
+          <Button href={`tel:${CONTACT.phoneIntl}`} variant="ghost">
+            {CONTACT.phoneDisplay}
+          </Button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <ClientLogos />
+</BaseLayout>

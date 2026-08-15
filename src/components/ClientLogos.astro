@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { CLIENTS } from '@/consts';
+import { LOGOS_CLIENTE } from '@/lib/imagenes';
+---
+
+<section class="py-16">
+  <div class="container-mipc text-center">
+    <h2 class="font-display text-3xl font-bold text-ink-900">Confían en nosotros</h2>
+    <p class="mx-auto mt-3 max-w-2xl">
+      Empresas e instituciones de medios, salud, educación, industria y distribución que nos han
+      confiado su infraestructura tecnológica.
+    </p>
+
+    <ul class="mt-10 grid grid-cols-2 items-center gap-6 sm:grid-cols-3 lg:grid-cols-5">
+      {CLIENTS.map(({ name, slug }) => {
+        const logo = LOGOS_CLIENTE[slug];
+        return (
+          <li class="flex h-24 items-center justify-center px-2">
+            {logo ? (
+              <Image
+                src={logo}
+                alt={name}
+                widths={[180, 360]}
+                sizes="180px"
+                loading="lazy"
+                class="max-h-16 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+              />
+            ) : (
+              <span class="text-sm font-medium text-ink-500">{name}</span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

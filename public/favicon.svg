@@ -1,0 +1,5 @@
+<!-- PLACEHOLDER de marca reducida. Reemplaza el favicon JPG del sitio anterior. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#EB3A00"/>
+  <text x="32" y="44" text-anchor="middle" font-family="'Baloo Chettan 2', system-ui, sans-serif" font-size="34" font-weight="700" fill="#FFFFFF">pc</text>
+</svg>

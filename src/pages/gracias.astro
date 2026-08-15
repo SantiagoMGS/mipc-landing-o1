@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { CONTACT } from '@/consts';
+---
+
+<BaseLayout title="Solicitud enviada | MiPC Tecnología" noindex>
+  <section class="py-24">
+    <div class="container-mipc max-w-2xl text-center">
+      <svg class="mx-auto text-brand-500" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m8 12 3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <h1 class="mt-6 font-display text-3xl font-bold text-ink-900">¡Recibimos tu solicitud!</h1>
+      <p class="mt-4 text-lg">
+        Gracias por escribirnos. Te responderemos en horario laboral. Si tu caso es urgente,
+        llámanos directamente.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href={`tel:${CONTACT.phoneIntl}`} variant="primary">
+          Llamar {CONTACT.phoneDisplay}
+        </Button>
+        <Button href="/" variant="secondary">Volver al inicio</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CtaQuote from '@/components/CtaQuote.astro';
+import { SITE } from '@/consts';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) => d.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  inLanguage: SITE.lang,
+  author: { '@type': 'Organization', name: SITE.name, '@id': `${SITE.url}/#business` },
+  publisher: { '@id': `${SITE.url}/#business` },
+  mainEntityOfPage: new URL(`/blog/${post.id}/`, SITE.url).href,
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | MiPC Tecnología`}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate}
+>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+
+  <article class="py-14">
+    <div class="container-mipc max-w-3xl">
+      <a href="/blog/" class="font-display font-bold text-brand-600 hover:text-brand-700">
+        <span aria-hidden="true">&larr;</span> Volver al blog
+      </a>
+      <h1 class="mt-4 font-display text-4xl font-bold text-ink-900">{post.data.title}</h1>
+      <time datetime={post.data.pubDate.toISOString()} class="mt-3 block text-sm text-ink-500">
+        {fmt(post.data.pubDate)}
+      </time>
+      <div class="prose-mipc mt-8">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <CtaQuote />
+</BaseLayout>

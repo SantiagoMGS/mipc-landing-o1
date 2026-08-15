@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { waLink } from '@/consts';
+
+/* El sitio anterior servía estos instaladores desde enlaces privados de mega.nz.
+   Ahora apuntan al sitio oficial del fabricante. El "Pack Office" se retiró:
+   distribuía Microsoft Office sin licencia (ver docs/01 §8). */
+const recursos = [
+  {
+    name: 'AnyDesk',
+    desc: 'Herramienta de soporte remoto. Descárgala para que podamos conectarnos a tu equipo.',
+    href: 'https://anydesk.com/es/downloads',
+  },
+  {
+    name: 'DeskIn',
+    desc: 'Alternativa de soporte remoto cuando AnyDesk no está disponible.',
+    href: 'https://www.deskin.io/download',
+  },
+  {
+    name: 'CrystalDiskInfo',
+    desc: 'Revisa el estado de salud de tu disco duro o SSD y anticipa fallos.',
+    href: 'https://crystalmark.info/en/software/crystaldiskinfo/',
+  },
+];
+---
+
+<BaseLayout
+  title="Recursos y Herramientas de Soporte | MiPC Tecnología"
+  description="Herramientas de soporte remoto y diagnóstico recomendadas por MiPC Tecnología, con enlaces oficiales de cada fabricante."
+>
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc">
+      <h1 class="font-display text-4xl font-bold text-ink-900">Recursos</h1>
+      <p class="mt-4 max-w-3xl text-lg">
+        Herramientas para el óptimo funcionamiento de tus equipos. Todas se descargan directamente
+        del sitio oficial de cada fabricante.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="container-mipc grid gap-6 md:grid-cols-3">
+      {recursos.map((r) => (
+        <article class="flex h-full flex-col rounded-[10px] border border-ink-100 p-7">
+          <h2 class="font-display text-xl font-bold text-ink-900">{r.name}</h2>
+          <p class="mt-3 flex-1 text-[16px]">{r.desc}</p>
+          <a href={r.href} target="_blank" rel="noopener noreferrer"
+            class="mt-5 inline-flex items-center gap-1 font-display font-bold text-brand-600 hover:text-brand-700">
+            Descargar del sitio oficial
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="pb-16">
+    <div class="container-mipc">
+      <div class="rounded-[10px] border border-ink-100 p-7">
+        <h2 class="font-display text-xl font-bold text-ink-900">Identificar tu equipo</h2>
+        <p class="mt-3 text-[16px]">
+          Si te pedimos el identificador único de tu computador, abre el símbolo del sistema
+          (<kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>cmd</code>) y ejecuta:
+        </p>
+        <pre class="mt-4 overflow-x-auto rounded-[5px] bg-ink-900 p-4 text-sm text-white"><code>wmic csproduct get UUID</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-50 py-14">
+    <div class="container-mipc text-center">
+      <h2 class="font-display text-2xl font-bold text-ink-900">¿Necesitas ayuda para instalarlas?</h2>
+      <p class="mt-3">Te guiamos paso a paso por WhatsApp.</p>
+      <a href={waLink('Hola, necesito ayuda con una herramienta de soporte remoto.')}
+        target="_blank" rel="noopener noreferrer"
+        class="mt-6 inline-block rounded-[5px] bg-whatsapp px-8 py-4 font-display text-[17px] font-bold text-white">
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </section>
+</BaseLayout>
