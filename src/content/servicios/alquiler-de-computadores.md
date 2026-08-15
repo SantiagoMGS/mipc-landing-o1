@@ -23,3 +23,23 @@ En **MiPC Tecnología** contamos con equipos de cómputo corporativos con difere
 ## Alquilar en lugar de comprar
 
 Útil para picos de operación, proyectos temporales, capacitaciones, eventos y equipos de reemplazo mientras se repara el parque propio.
+
+<!--
+  TODO(contenido) - AMPLIAR ESTA LANDING
+
+  Estado: ~299 palabras. Objetivo 900-1400, siguiendo el molde ya aplicado en
+  reparacion-de-computadores.md.
+
+  Datos que hay que pedirle al cliente antes de redactar:
+    1. Minimo de dias y minimo de equipos por alquiler.
+    2. Configuraciones disponibles (procesador, RAM, disco) y cuantos equipos
+       tienen en inventario.
+    3. Si entregan con sistema operativo y ofimatica licenciados.
+    4. Rango de tarifa mensual, aunque sea "desde".
+    5. Si exigen deposito, poliza o contrato.
+    6. Si el reemplazo por falla esta incluido y en cuanto tiempo.
+    7. Si alquilan tambien monitores, impresoras o perifericos.
+
+  Busquedas a cubrir: "alquiler de computadores medellin", "arriendo portatiles
+  empresas", "alquiler equipos de computo por dias".
+-->

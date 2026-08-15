@@ -25,3 +25,22 @@ En **MiPC Tecnología** contamos con servicio de diseño, instalación y adminis
 ## Para quién
 
 Oficinas, consultorios, instituciones educativas, bodegas y locales comerciales que necesitan una red confiable, documentada y que soporte crecimiento.
+
+<!--
+  TODO(contenido) - AMPLIAR ESTA LANDING
+
+  Estado: ~336 palabras. Objetivo 900-1400, siguiendo el molde ya aplicado en
+  reparacion-de-computadores.md.
+
+  Datos que hay que pedirle al cliente antes de redactar:
+    1. Si certifican el cableado y con que equipo de medicion.
+    2. Categoria de cable que instalan por defecto (Cat5e, Cat6, Cat6A).
+    3. Marcas con las que trabajan ademas de Mikrotik (Ubiquiti, TP-Link, Cisco).
+    4. Si el diseno de red tiene costo aparte de la instalacion.
+    5. Tamano tipico de proyecto: cuantos puntos suelen instalar.
+    6. Si ofrecen administracion de red recurrente y bajo que modalidad.
+    7. Garantia sobre el cableado instalado.
+
+  Busquedas a cubrir: "cableado estructurado medellin", "instalacion red de datos
+  empresas", "configuracion mikrotik medellin", "red wifi para oficina".
+-->
