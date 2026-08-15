@@ -9,7 +9,8 @@ export const SITE = {
   legalName: 'MI PC TECNOLOGÍA S.A.S.',
   shortName: 'MiPC',
   lang: 'es-CO',
-  defaultTitle: 'Reparación de Computadores en Medellín | MiPC Tecnología',
+  // No debe coincidir con el seoTitle de ninguna pagina de servicio: se canibalizan.
+  defaultTitle: 'MiPC Tecnología | Soporte TI y Reparación de Computadores en Medellín',
   defaultDescription:
     'Reparación y mantenimiento de computadores, redes de datos, cámaras de seguridad y soporte TI en Medellín. Más de 15 años como aliado tecnológico de empresas e instituciones.',
   foundingYear: 2009,
@@ -29,6 +30,8 @@ export const CONTACT = {
   country: 'CO',
   // Identificador de la ficha de Google Business Profile.
   googleCid: '15154712519055002689',
+  lat: 6.2402418,
+  lng: -75.5864735,
   hours: [
     { days: 'Lunes a viernes', time: '8:00 a.m. – 5:00 p.m.' },
     { days: 'Sábados', time: '9:00 a.m. – 1:00 p.m.' },

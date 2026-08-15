@@ -2,7 +2,7 @@
 title: Reparación y mantenimiento de computadores
 shortTitle: Reparación de Computadores
 order: 1
-seoTitle: Reparación de Computadores en Medellín | MiPC Tecnología
+seoTitle: Reparación de Computadores en Medellín | Servicio Técnico MiPC
 description: Reparación y mantenimiento preventivo y correctivo de computadores en Medellín. Cambio de disco, memoria RAM, pantallas, sistema operativo y respaldo de información.
 summary: Realizamos reparación, mantenimiento preventivo y correctivo de computadores con personal capacitado y servicio rápido.
 legacyAnchor: repara

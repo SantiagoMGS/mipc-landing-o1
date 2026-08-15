@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import { SITE, CONTACT, SOCIAL, mapsUrl } from '@/consts';
 
 interface Props {
@@ -24,9 +25,11 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
 const isHome = Astro.url.pathname === '/';
 
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
+
 const localBusiness = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'ProfessionalService',
   '@id': `${SITE.url}/#business`,
   name: SITE.name,
   legalName: SITE.legalName,
@@ -35,8 +38,10 @@ const localBusiness = {
   email: CONTACT.email,
   foundingDate: String(SITE.foundingYear),
   description: SITE.defaultDescription,
-  image: new URL('/logo-mipc.png', SITE.url).href,
+  image: new URL('/og-default.jpg', SITE.url).href,
+  logo: new URL('/logo-mipc.png', SITE.url).href,
   priceRange: '$$',
+  currenciesAccepted: 'COP',
   address: {
     '@type': 'PostalAddress',
     streetAddress: CONTACT.street,
@@ -44,10 +49,23 @@ const localBusiness = {
     addressRegion: CONTACT.region,
     addressCountry: CONTACT.country,
   },
+  geo: { '@type': 'GeoCoordinates', latitude: CONTACT.lat, longitude: CONTACT.lng },
   hasMap: mapsUrl(),
   areaServed: { '@type': 'City', name: 'Medellín' },
   openingHours: CONTACT.hoursSchema,
-  sameAs: [SOCIAL.facebook, SOCIAL.instagram],
+  sameAs: [SOCIAL.facebook, SOCIAL.instagram, mapsUrl()],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de tecnología',
+    itemListElement: servicios.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.data.title,
+        url: new URL(`/servicios/${s.id}/`, SITE.url).href,
+      },
+    })),
+  },
 };
 
 const website = {
