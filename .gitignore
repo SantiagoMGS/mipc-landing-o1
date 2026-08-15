@@ -7,3 +7,15 @@ dist/
 *.log
 .vercel
 .netlify
+
+# Cache local de wrangler
+.wrangler/
+
+# Configuracion local de herramientas de IA
+.claude/
+
+# Infraestructura. Este repositorio es publico: un volcado de zona DNS revela
+# subdominios que no estan enlazados desde la web (admin, os) junto con su IP.
+# Se conserva en disco, fuera de Git.
+*.zone
+mipc.com.co.txt
