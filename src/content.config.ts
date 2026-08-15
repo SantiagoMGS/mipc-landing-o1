@@ -16,6 +16,10 @@ const servicios = defineCollection({
     features: z.array(z.string()),
     ctaText: z.string(),
     whatsappMessage: z.string(),
+    /** Alimentan el bloque visible y el JSON-LD de tipo FAQPage. */
+    faqs: z
+      .array(z.object({ q: z.string(), a: z.string() }))
+      .default([]),
   }),
 });
 
