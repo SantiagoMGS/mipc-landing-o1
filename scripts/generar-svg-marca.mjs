@@ -294,6 +294,34 @@ const sub = (() => {
   return out.map(([p, q]) => [p + a, q + a]);
 })();
 
+/** Version para fondo oscuro: sube los grises a blanco y deja el naranja.
+ *  Remapea el rango de grises en vez de aplanarlos, para conservar el degradado. */
+function versionOscura(svg) {
+  const grises = [];
+  for (const m of svg.matchAll(/#([0-9a-f]{6})/gi)) {
+    const n = parseInt(m[1], 16);
+    const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255];
+    if (Math.max(r, g, b) - Math.min(r, g, b) < 30) grises.push((r + g + b) / 3);
+  }
+  if (!grises.length) return svg;
+
+  const min = Math.min(...grises);
+  const max = Math.max(...grises);
+  const CLARO = 255;
+  const OSCURO = 212;
+
+  return svg.replace(/#([0-9a-f]{6})/gi, (todo, hex) => {
+    const n = parseInt(hex, 16);
+    const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255];
+    if (Math.max(r, g, b) - Math.min(r, g, b) >= 30) return todo;
+    const avg = (r + g + b) / 3;
+    const t = max === min ? 1 : (avg - min) / (max - min);
+    const v = Math.round(OSCURO + t * (CLARO - OSCURO));
+    const h = v.toString(16).padStart(2, '0');
+    return `#${h}${h}${h}`;
+  });
+}
+
 const iso = construir(sub[0][0], sub[sub.length - 2][1]);
 writeFileSync(`${DESTINO}/isotipo.svg`, iso);
 console.log(`${'isotipo'.padEnd(28)} ${(iso.length / 1024).toFixed(1)} KB`);
@@ -305,4 +333,10 @@ writeFileSync('public/favicon.svg', fav);
 console.log(`${'public/favicon.svg'.padEnd(28)} ${(fav.length / 1024).toFixed(1)} KB`);
 
 // El logotipo que usa el sitio, servido tal cual.
-writeFileSync('public/logo-mipc.svg', readFileSync(`${DESTINO}/logo-tecnologia-espaciado.svg`));
+const principal = readFileSync(`${DESTINO}/logo-tecnologia-espaciado.svg`, 'utf8');
+writeFileSync('public/logo-mipc.svg', principal);
+
+const oscuro = versionOscura(principal);
+writeFileSync(`${DESTINO}/logo-tecnologia-blanco.svg`, oscuro);
+writeFileSync('public/logo-mipc-blanco.svg', oscuro);
+console.log(`${'public/logo-mipc-blanco.svg'.padEnd(28)} ${(oscuro.length / 1024).toFixed(1)} KB`);

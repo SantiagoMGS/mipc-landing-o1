@@ -51,9 +51,28 @@ Todas comparten el mismo wordmark y proporción (~2,08:1).
 | Variantes SVG | ✅ Las 4 + isotipo, cada una en archivo propio | — |
 | Formato servido | ✅ SVG (2,5 KB con brotli) | — |
 | Favicon | ✅ SVG cuadrado del bloque "PC" + PNG de respaldo | — |
-| Versión para fondo oscuro | 🔴 No existe | El gris no contrasta sobre `#28303D`; hoy va sobre placa blanca en el footer |
+| Versión para fondo oscuro | ✅ `logo-tecnologia-blanco.svg` | — |
 | Zona de protección | 🔴 No definida | Definir (sugerido: altura de la `m`) |
 | Tamaño mínimo | 🔴 No definido | Definir (sugerido: 100 px de ancho) |
+
+### Versión para fondo oscuro
+
+Sobre el grafito `#28303D` del footer, cada parte del logotipo se comporta distinto:
+
+| Elemento | Color | Contraste sobre `#28303D` | Decisión |
+|---|---|---|---|
+| "mi" y "Tecnología" | `#505358` | 1,4:1 | ❌ Recolorear |
+| "PC" y la hoja | `#FF461A` | 3,75:1 | ✅ Conservar |
+
+El naranja funciona sobre oscuro, así que **tocarlo sería perder la marca**. Solo se suben los
+grises.
+
+**No se aplanan a blanco puro:** el rango de grises original (`#43454B` → `#505358`) se remapea a
+`#D4D4D4` → `#FFFFFF`, conservando la dirección del degradado. Aplanar habría dejado el wordmark
+sin volumen.
+
+La selección es por saturación, no por valor exacto: se recolorea cualquier color cuya diferencia
+entre canal máximo y mínimo sea menor a 30. Así sigue funcionando si el degradado cambia.
 
 ### Peso de cada variante
 
