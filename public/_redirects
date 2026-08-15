@@ -17,11 +17,9 @@
 /amazon-anuncia-la-adquisicion-de-la-empresa-de-tecnologia-cuantica-psiquantum/    /blog/  301
 /intel-anuncia-nuevos-procesadores-de-escritorio-core-de-12a-generacion/           /blog/  301
 
-# Rutas de WordPress que ya no existen
-/wp-admin/*      /404.html   404
-/wp-login.php    /404.html   404
-/wp-content/*    /404.html   404
-/wp-includes/*   /404.html   404
+# Rutas de WordPress que ya no existen.
+# Las de /wp-* no necesitan regla: al no existir el archivo, Cloudflare sirve
+# 404.html por not_found_handling. Ademas _redirects solo admite 200/301/302/303/307/308.
 /feed/           /blog/      301
 /category/*      /blog/      301
 /author/*        /           301
