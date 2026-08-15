@@ -106,7 +106,8 @@ Videovigilancia y control de ingreso para establecimientos.
 Equipos corporativos con distintas configuraciones, con soporte técnico, mantenimiento periódico y servicio a domicilio.
 
 - Alquiler de computadores portátiles y de escritorio
-- Venta de equipos (canalizada hacia `mipctecnologia.com/shop`)
+- Venta de equipos (por cotización; no hay ecommerce. La tienda anterior,
+  `mipctecnologia.com/shop`, está fuera de servicio y devuelve 404)
 - Suministro de partes y accesorios
 - Suministro de licenciamiento de software
 

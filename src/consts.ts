@@ -52,7 +52,6 @@ export const reviewUrl = () => `https://www.google.com/maps?cid=${CONTACT.google
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/mipctecnologiasas',
   instagram: 'https://www.instagram.com/mipc.com.co',
-  shop: 'https://mipctecnologia.com/shop',
 } as const;
 
 export const waLink = (msg: string = CONTACT.whatsappMessage) =>

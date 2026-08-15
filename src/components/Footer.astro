@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { CONTACT, SOCIAL, SITE, mapsUrl } from '@/consts';
+import { CONTACT, SOCIAL, SITE, mapsUrl, waLink } from '@/consts';
 
 const servicios = (await getCollection('servicios')).sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
@@ -28,7 +28,7 @@ const year = new Date().getFullYear();
           </li>
         ))}
         <li>
-          <a href={SOCIAL.shop} target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
+          <a href={waLink('Hola, quiero cotizar la compra de equipos.')} target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
             Compra de equipos
           </a>
         </li>
