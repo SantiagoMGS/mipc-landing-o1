@@ -48,29 +48,44 @@ Todas comparten el mismo wordmark y proporción (~2,08:1).
 | Aspecto | Estado | Acción |
 |---|---|---|
 | Fuente vectorial | ✅ Recuperada y archivada en el repo | — |
-| Formato servido | ✅ PNG de 1200 px generado desde el vector; Astro lo convierte a WebP | — |
-| Isotipo | ✅ Extraído (`isotipo.png`) | — |
-| Favicon | ✅ Bloque "PC" + hoja, generado desde el vector | — |
+| Variantes SVG | ✅ Las 4 + isotipo, cada una en archivo propio | — |
+| Formato servido | ✅ SVG (2,5 KB con brotli) | — |
+| Favicon | ✅ SVG cuadrado del bloque "PC" + PNG de respaldo | — |
 | Versión para fondo oscuro | 🔴 No existe | El gris no contrasta sobre `#28303D`; hoy va sobre placa blanca en el footer |
 | Zona de protección | 🔴 No definida | Definir (sugerido: altura de la `m`) |
 | Tamaño mínimo | 🔴 No definido | Definir (sugerido: 100 px de ancho) |
 
-> **Por qué el sitio no sirve SVG.** El vector convertido pesa ~96 KB incluso tras optimizar,
-> porque los degradados se traducen en decenas de `clipPath` y `linearGradient`. A los 150 px a los
-> que se muestra el logo, el WebP generado desde el vector pesa ~5 KB y se ve igual. El vector se
-> conserva como fuente para impresión y futuras piezas, no como formato de entrega web.
+### Peso de cada variante
 
+| Archivo | Crudo | gzip | brotli |
+|---|---|---|---|
+| `isotipo.svg` | 6,1 KB | 1,6 KB | **1,3 KB** |
+| `logo-tecnologia-espaciado.svg` | 10,5 KB | 3,1 KB | **2,5 KB** |
+| `logo-tecnologia.svg` | 10,5 KB | 3,1 KB | **2,6 KB** |
+| `logo-dominio.svg` | 10,8 KB | 2,7 KB | **2,2 KB** |
+| `logo-reparamos.svg` | 15,9 KB | 4,1 KB | **3,3 KB** |
+| `favicon.svg` | 3,0 KB | — | — |
+
+> **Por qué el primer intento pesaba 96 KB.** La conversión directa del PDF produce un SVG que
+> contiene **las cuatro variantes**, recortadas solo por `viewBox`. SVGO apenas quitaba un 3,4 %
+> porque, formalmente, todo el contenido seguía en uso.
+>
+> La solución fue **filtrar los trazos por posición**: calcular la caja de cada grupo de dibujo
+> como *contenido ∩ recorte* (el rectángulo de un degradado se sale a propósito, y el recorte de
+> un texto suele ser la página entera), descartar los trazos de fondo del tamaño de la hoja, y
+> conservar solo las definiciones referenciadas. De 96 KB a 10,5 KB.
+>
 > **Un JPEG del logo no sirve.** Se descartó un `LogoMipc.jpeg` de 374 × 180 porque el formato
 > aplana la transparencia sobre `#F7F7F7` e introduce artefactos en los bordes del texto.
-> Para logotipos: vector > PNG > todo lo demás.
 
 ### Favicon
 
 **Anterior (WordPress):** `cropped-profile2-32x32.jpg` — un JPG recortado que ni siquiera era el logo.
 
-**Actual:** el bloque **"PC" + hoja** aislado del isotipo, generado desde el vector en 32, 192 y
-512 px, más `apple-touch-icon` de 180 px con fondo blanco. Se usó solo el bloque naranja porque el
-wordmark completo (proporción 2,6:1) resulta ilegible a 32 px.
+**Actual:** el bloque **"PC" + hoja** en SVG cuadrado, más PNG de 32 y 192 px como respaldo y
+`apple-touch-icon` de 180 px. Se usó solo el bloque naranja porque el wordmark completo
+(proporción 2,6:1) resulta ilegible a 32 px. Los trazos se seleccionaron por color, no por
+coordenada: se conservan los grupos cuyo relleno tiene componente rojo alto y verde bajo.
 
 ---
 

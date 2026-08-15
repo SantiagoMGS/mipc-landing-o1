@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '@/assets/marca/logo-mipc.png';
 import { NAV, CONTACT, SITE, waLink } from '@/consts';
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
@@ -30,11 +28,11 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
   <div class="container-mipc flex items-center justify-between gap-4 py-3">
     <a href="/" class="shrink-0" aria-label={`${SITE.name} — Inicio`}>
-      <Image
-        src={logo}
+      <img
+        src="/logo-mipc.svg"
         alt="MiPC Tecnología"
-        widths={[150, 300]}
-        sizes="150px"
+        width="100"
+        height="48"
         loading="eager"
         fetchpriority="high"
         class="h-12 w-auto"
